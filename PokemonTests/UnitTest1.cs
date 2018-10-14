@@ -1,4 +1,4 @@
-﻿using System;
+﻿/*using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Pokemon;
 using Pokemon.Encounters;
@@ -247,3 +247,4 @@ namespace PokemonTests
         
     }
 }
+*/

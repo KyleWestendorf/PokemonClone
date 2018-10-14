@@ -4,11 +4,22 @@ namespace Pokemon
 {
     public class Turn
     {
-
+        
         public void CompleteTurn(IPokemon playerPokemon, IPokemon aiPokemon)
         {
             PlayerTurn(playerPokemon, aiPokemon);
-            AITurn(aiPokemon, playerPokemon);
+            if(aiPokemon.CurrentHP <= 0) 
+            {
+                Console.WriteLine($"{playerPokemon.Name} knocked out {aiPokemon.Name}");
+            }
+            else 
+            {
+                AITurn(aiPokemon, playerPokemon);
+                    if(playerPokemon.CurrentHP <= 0) 
+                    {
+                    Console.WriteLine($"{aiPokemon.Name} knocked out {playerPokemon.Name}");
+                    }
+            }      
         }
         
         private void AITurn(IPokemon attacker, IPokemon target)

@@ -13,6 +13,7 @@ namespace Pokemon.Encounters
         public IPokemon PlayerPokemon { get; set; }
         public IPokemon AIPokemon { get; set; }
         public Turn Turn { get; set; } = new Turn();
+        private bool EncounterOver {get; set; } = false;
 
         public WildPokemonEncounter(IPokemon playerPokemon, IPokemon aiPokemon) 
         {
@@ -22,11 +23,18 @@ namespace Pokemon.Encounters
 
         public void TakeTurn()
         {
+            if(EncounterOver == true) return;
+
             Turn.CompleteTurn(PlayerPokemon, AIPokemon);
+            if(AIPokemon.CurrentHP <= 0 || PlayerPokemon.CurrentHP <=0) {
+                EncounterOver = true;
+            }
         }
 
         public void CompleteBattle()
         {
+            if(EncounterOver == true) return;
+
             while (PlayerPokemon.HP > 0 && AIPokemon.HP > 0)
             {
                 TakeTurn();
@@ -34,11 +42,22 @@ namespace Pokemon.Encounters
             }
         }
 
+        public void AttemptToCatchPokemon() {
+            if(EncounterOver == true) return;
 
-        public bool CatchPokemon()
+            if(PokemonCatchable() == true) {
+                Console.WriteLine($"Player caught {AIPokemon.Name}!");
+                EncounterOver = true;
+            } else {
+                Console.WriteLine($"Player failed to catch {AIPokemon.Name}");
+            }
+        }
+
+        private bool PokemonCatchable()
         {
             try
             {
+
                 CatchChance catchChance = CalculateCatchChance();
                 Random rnd = new Random();
                 int randomNumber = rnd.Next(1, 11);
@@ -75,14 +94,14 @@ namespace Pokemon.Encounters
         }
 
 
-        public enum CatchChance
+        private enum CatchChance
         {
             Bad,
             Better,
             Best
         }
 
-        public CatchChance CalculateCatchChance() 
+        private CatchChance CalculateCatchChance() 
         {
             if (AIPokemon.CurrentHP > ((float)AIPokemon.HP * .66f)) {
                 return CatchChance.Bad;

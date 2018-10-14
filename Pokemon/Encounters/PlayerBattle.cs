@@ -25,6 +25,9 @@ namespace Pokemon
             Turn.CompleteTurn(PlayerPokemon, AIPokemon);
         }
 
+       
+
+
         public void CompleteBattle()
         {
             while (PlayerPokemon.CurrentHP > 0 && AIPokemon.CurrentHP > 0)
@@ -33,6 +36,7 @@ namespace Pokemon
 
             }
 
+            
         }
     }
 }

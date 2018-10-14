@@ -20,14 +20,10 @@ namespace Pokemon
             battle.TakeTurn();
             battle.TakeTurn();
             battle.TakeTurn();
-            if (battle.CatchPokemon() == true)
-            {
-                Console.WriteLine(Blastoise.Name + " caught!");
-            } else
-            {
-                Console.WriteLine("Failed to catch " + Blastoise.Name);
-            }
+            
+            battle.AttemptToCatchPokemon();
 
+            Console.ReadLine();
         }
     }
 }
