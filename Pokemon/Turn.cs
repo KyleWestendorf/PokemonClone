@@ -13,13 +13,13 @@ namespace Pokemon
         
         private void AITurn(IPokemon attacker, IPokemon target)
         {
-            target.HP = Attack.MakeAttack(attacker, target);
+            target.CurrentHP = Attack.MakeAttack(attacker, target);
             Console.WriteLine("End of AI Turn");
         }
 
         private void PlayerTurn(IPokemon attacker, IPokemon target)
         {
-            target.HP = Attack.MakeAttack(attacker, target);
+            target.CurrentHP = Attack.MakeAttack(attacker, target);
             Console.WriteLine("End of Player Turn");
         }
     }

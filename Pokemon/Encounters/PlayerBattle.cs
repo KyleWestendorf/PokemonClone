@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace Pokemon
 {
-    public class Battle
+    public class PlayerBattle : IEncounter
     {
         public IPokemon PlayerPokemon { get; set; }
         public IPokemon AIPokemon { get; set; }
-        public Turn Turn { get; set; }
+        public Turn Turn { get; set; } = new Turn();
 
-
-        public Battle(IPokemon playerPokemon, IPokemon aiPokemon)
+        public PlayerBattle(IPokemon playerPokemon, IPokemon aiPokemon)
         {
             PlayerPokemon = playerPokemon;
             AIPokemon = aiPokemon;
-            Turn = new Turn();
+          
         }
+
 
         public void TakeTurn()
         {
@@ -27,7 +27,7 @@ namespace Pokemon
 
         public void CompleteBattle()
         {
-            while (PlayerPokemon.HP > 0 && AIPokemon.HP > 0)
+            while (PlayerPokemon.CurrentHP > 0 && AIPokemon.CurrentHP > 0)
             {
                 TakeTurn();
 

@@ -10,9 +10,9 @@ namespace Pokemon
             try
             {
                 float damage = CalculateDamage(attacker, target);
-                int targetHealth = target.HP - (int)damage;
+                int targetHealth = target.CurrentHP - (int)damage;
                
-                Console.WriteLine($"{attacker.Name} hit {target.Name} for {damage}. {target.Name} has {target.HP - damage} health remaining.");
+                Console.WriteLine($"{attacker.Name} hit {target.Name} for {damage}. {target.Name} has {target.CurrentHP - damage} health remaining.");
                 return targetHealth;
             }
 

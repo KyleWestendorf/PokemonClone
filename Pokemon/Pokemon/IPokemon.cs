@@ -20,6 +20,7 @@ namespace Pokemon
         int AttackStat { get; set; }
         int DefenseStat { get; set; }
         PokemonType Type { get; set; }
+        int CurrentHP { get; set; }
 
     }
 }

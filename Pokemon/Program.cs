@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pokemon.Encounters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,9 +15,18 @@ namespace Pokemon
             IPokemon Charizard = new PlayerPokemon("Silas", 100, 50, 60, PokemonType.Fire);
             IPokemon Blastoise = new Pokemon("Blastoise", 100, 70, 80, PokemonType.Water);
 
-            Battle battle = new Battle(Charizard, Blastoise);
+            WildPokemonEncounter battle = new WildPokemonEncounter(Charizard, Blastoise);
 
-            battle.CompleteBattle();
+            battle.TakeTurn();
+            battle.TakeTurn();
+            battle.TakeTurn();
+            if (battle.CatchPokemon() == true)
+            {
+                Console.WriteLine(Blastoise.Name + " caught!");
+            } else
+            {
+                Console.WriteLine("Failed to catch " + Blastoise.Name);
+            }
 
         }
     }
