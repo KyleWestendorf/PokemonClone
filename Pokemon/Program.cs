@@ -14,6 +14,7 @@ namespace Pokemon
 
             IPokemon Charizard = new PlayerPokemon("Silas", 100, 50, 60, PokemonType.Fire);
             IPokemon Blastoise = new Pokemon("Blastoise", 100, 70, 80, PokemonType.Water);
+            Player Kyle = new Player("Kyle");
 
             WildPokemonEncounter battle = new WildPokemonEncounter(Charizard, Blastoise);
 
@@ -21,7 +22,7 @@ namespace Pokemon
             battle.TakeTurn();
             battle.TakeTurn();
             
-            battle.AttemptToCatchPokemon();
+            battle.AttemptToCatchPokemon(Kyle);
 
             Console.ReadLine();
         }

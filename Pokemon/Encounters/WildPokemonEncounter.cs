@@ -9,7 +9,6 @@ namespace Pokemon.Encounters
     public class WildPokemonEncounter: IEncounter
     {
 
-        
         public IPokemon PlayerPokemon { get; set; }
         public IPokemon AIPokemon { get; set; }
         public Turn Turn { get; set; } = new Turn();
@@ -42,11 +41,13 @@ namespace Pokemon.Encounters
             }
         }
 
-        public void AttemptToCatchPokemon() {
+        public void AttemptToCatchPokemon(Player player) {
             if(EncounterOver == true) return;
 
             if(PokemonCatchable() == true) {
                 Console.WriteLine($"Player caught {AIPokemon.Name}!");
+                PlayerPokemon caughtPokemon = new PlayerPokemon(AIPokemon.Name, AIPokemon.HP, AIPokemon.AttackStat, AIPokemon.DefenseStat, AIPokemon.Type);
+                player.AddPokemon(caughtPokemon);
                 EncounterOver = true;
             } else {
                 Console.WriteLine($"Player failed to catch {AIPokemon.Name}");
