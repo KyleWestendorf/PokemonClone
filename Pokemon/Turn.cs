@@ -22,7 +22,7 @@ namespace Pokemon
             }      
         }
         
-        private void AITurn(IPokemon attacker, IPokemon target)
+        public void AITurn(IPokemon attacker, IPokemon target)
         {
             target.CurrentHP = Attack.MakeAttack(attacker, target);
             Console.WriteLine("End of AI Turn");

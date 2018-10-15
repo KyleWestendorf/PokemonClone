@@ -20,6 +20,8 @@ namespace Pokemon.Encounters
             AIPokemon = aiPokemon;
         }
 
+
+       
         public void TakeTurn()
         {
             if(EncounterOver == true) return;
@@ -43,7 +45,7 @@ namespace Pokemon.Encounters
 
         public void AttemptToCatchPokemon(Player player) {
             if(EncounterOver == true) return;
-
+            
             if(PokemonCatchable() == true) {
                 Console.WriteLine($"Player caught {AIPokemon.Name}!");
                 PlayerPokemon caughtPokemon = new PlayerPokemon(AIPokemon.Name, AIPokemon.HP, AIPokemon.AttackStat, AIPokemon.DefenseStat, AIPokemon.Type);
@@ -51,6 +53,12 @@ namespace Pokemon.Encounters
                 EncounterOver = true;
             } else {
                 Console.WriteLine($"Player failed to catch {AIPokemon.Name}");
+
+                Turn.AITurn(AIPokemon, PlayerPokemon);
+                if (PlayerPokemon.CurrentHP <= 0)
+                {
+                    Console.WriteLine($"{AIPokemon.Name} knocked out {PlayerPokemon.Name}");
+                }
             }
         }
 
