@@ -12,6 +12,8 @@ namespace Pokemon
         static void Main(string[] args)
         {
 
+            //MainAsync().Wait();
+            
 
             IPokemon Charizard = new PlayerPokemon("Silas", 100, 50, 60, PokemonType.Fire);
             //IPokemon Blastoise = new Pokemon("Blastoise", 100, 70, 80, PokemonType.Water);
@@ -35,5 +37,21 @@ namespace Pokemon
 
             Console.ReadLine();
         }
+
+        //static async Task MainAsync()
+        //{
+        //    PokemonDb db = new PokemonDb("https://pokeapi.co/api/v2");
+
+
+        //    //IEnumerable<APIPokemonList> response = await db.ListAll("pokemon/");
+        //    //List<APIPokemonList> PokemonList = response.ToList();
+
+        //    Pokemon pokemon = await db.RetrievePokemon();
+
+       
+        //}
+
     }
+
+    
 }

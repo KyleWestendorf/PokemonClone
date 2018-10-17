@@ -17,7 +17,7 @@ namespace Pokemon
             Player = player;
         }
 
-        public void Move()
+        public async void Move()
         {
             MoveCounter++;
             //if (MoveCounter % 3 == 0)
@@ -26,18 +26,20 @@ namespace Pokemon
             //}
             if(MoveCounter % 5 == 0) {
 
-                WildPokemonBattle();
+                await WildPokemonBattle();
              }
 }
 
-        private void WildPokemonBattle()
+        private async Task WildPokemonBattle()
         {
-            IPokemon Blastoise = new Pokemon("Blastoise", 100, 70, 80, PokemonType.Water);
+            PokemonDb db = new PokemonDb("https://pokeapi.co/api/v2");
 
-            WildPokemonEncounter encounter = new WildPokemonEncounter(Player.ActivePokemon, Blastoise);
+            Pokemon randomPokemon = await db.RetrievePokemon();
 
-            Console.WriteLine($"Player encountered a {Blastoise.Name}!");
-            while (Player.ActivePokemon.CurrentHP > 0 && Blastoise.CurrentHP > 0)
+            WildPokemonEncounter encounter = new WildPokemonEncounter(Player.ActivePokemon, randomPokemon);
+
+            Console.WriteLine($"Player encountered a {randomPokemon.Name}!");
+            while (Player.ActivePokemon.CurrentHP > 0 && randomPokemon.CurrentHP > 0)
             {
                 Console.WriteLine("Press a to attack");
                 Console.WriteLine("Press c to attempt capture");
