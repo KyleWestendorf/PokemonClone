@@ -24,10 +24,21 @@ namespace Pokemon
             //WildPokemonEncounter battle = new WildPokemonEncounter(Charizard, Blastoise);
             Game Game = new Game(Kyle);
 
-            Game.Move();
-            Game.Move();
-            Game.Move();
-            Game.Move();
+            while(Game.GameOver == false) {
+                Console.WriteLine("Press M to move.");
+                Console.WriteLine("Press E to Exit.");
+                string response = Console.ReadLine();
+          
+                if(response == "m") {
+                    Console.WriteLine("Player moves forward through the grass...");
+                    Game.Move();
+                } else if (response == "e") {
+                    Game.GameOver = true;
+                    Console.WriteLine("Exiting game!");
+                }
+            }
+            
+         
 
             //battle.TakeTurn();
             //battle.TakeTurn();

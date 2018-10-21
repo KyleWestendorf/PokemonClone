@@ -8,29 +8,28 @@ namespace Pokemon
         public void CompleteTurn(IPokemon playerPokemon, IPokemon aiPokemon)
         {
             PlayerTurn(playerPokemon, aiPokemon);
-            if(aiPokemon.CurrentHP <= 0) 
-            {
-                Console.WriteLine($"{playerPokemon.Name} knocked out {aiPokemon.Name}");
-            }
-            else 
-            {
-                AITurn(aiPokemon, playerPokemon);
-                    if(playerPokemon.CurrentHP <= 0) 
-                    {
-                    Console.WriteLine($"{aiPokemon.Name} knocked out {playerPokemon.Name}");
-                    }
-            }      
+            if(playerPokemon.CurrentHP <= 0 || aiPokemon.CurrentHP <= 0) return;                                                          
+            AITurn(aiPokemon, playerPokemon);
+                
         }
         
         public void AITurn(IPokemon attacker, IPokemon target)
         {
             target.CurrentHP = Attack.MakeAttack(attacker, target);
             Console.WriteLine("End of AI Turn");
+             if (target.CurrentHP <= 0)
+             {
+                    Console.WriteLine($"{attacker.Name} knocked out {target.Name}");
+             }
         }
 
         private void PlayerTurn(IPokemon attacker, IPokemon target)
         {
             target.CurrentHP = Attack.MakeAttack(attacker, target);
+             if(target.CurrentHP <= 0) 
+            {
+                Console.WriteLine($"{attacker.Name} knocked out {target.Name}");
+            }
             Console.WriteLine("End of Player Turn");
         }
     }

@@ -12,7 +12,7 @@ namespace Pokemon.Encounters
         public IPokemon PlayerPokemon { get; set; }
         public IPokemon AIPokemon { get; set; }
         public Turn Turn { get; set; } = new Turn();
-        private bool EncounterOver {get; set; } = false;
+        public bool EncounterOver {get; set; } = false;
 
         public WildPokemonEncounter(IPokemon playerPokemon, IPokemon aiPokemon) 
         {
@@ -55,10 +55,7 @@ namespace Pokemon.Encounters
                 Console.WriteLine($"Player failed to catch {AIPokemon.Name}");
 
                 Turn.AITurn(AIPokemon, PlayerPokemon);
-                if (PlayerPokemon.CurrentHP <= 0)
-                {
-                    Console.WriteLine($"{AIPokemon.Name} knocked out {PlayerPokemon.Name}");
-                }
+               
             }
         }
 

@@ -28,7 +28,7 @@ namespace Pokemon
         {
             try
             {
-                return (float)attacker.AttackStat * ((100f - (float)target.DefenseStat) / 100f);
+                return (float)attacker.AttackStat * ((150f - (float)target.DefenseStat) / 150f);
             } catch(Exception ex){
 
                 Console.WriteLine("Your issue is in Calculate Damage " + ex.Message);

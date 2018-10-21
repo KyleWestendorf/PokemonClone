@@ -11,6 +11,7 @@ namespace Pokemon
     {
         public Player Player { get; set; }
         public int MoveCounter { get; set; } = 1;
+        public bool GameOver {get; set; } = false;
 
         public Game(Player player )
         {
@@ -41,6 +42,9 @@ namespace Pokemon
             Console.WriteLine($"Player encountered a {randomPokemon.Name}!");
             while (Player.ActivePokemon.CurrentHP > 0 && randomPokemon.CurrentHP > 0)
             {
+                if(encounter.EncounterOver == true) {
+                    return;
+                }
                 Console.WriteLine("Press a to attack");
                 Console.WriteLine("Press c to attempt capture");
                 string response = Console.ReadLine();

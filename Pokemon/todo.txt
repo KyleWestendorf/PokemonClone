@@ -1,0 +1,5 @@
+To do:
+Make it so that if you have no pokemon with HP, you can't enter a battle.
+Give the ability to recover pokemon HP
+Give the ability to look at your team
+Give the ability to swap out pokemon
